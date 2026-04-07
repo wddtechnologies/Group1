@@ -1,1 +1,57 @@
-<p>add-jewelry works!</p>
+
+<div class="form-header">
+  <h3 class="fw-bold px-5 fs-2">Add An Item</h3>
+</div>
+
+
+<form>
+  <!-- [formGroup]="jewelryForm" (ngSubmit)="submit()" -->
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input id="name" type="text" class="form-control">
+    <!-- formControlName="name" -->
+  </div>
+
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <input id="category" type="text" class="form-control">
+    <!-- formControlName="category" -->
+  </div>
+
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input id="quantity" type="number" class="form-control">
+    <!-- formControlName="quantity" -->
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input id="price" type="number" class="form-control">
+    <!-- formControlName="price" -->
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" class="form-control" rows="4">
+    </textarea>
+    <!-- formControlName="description" -->    
+  </div>
+
+  <div class="mb-4">
+    <label for="image" class="form-label">Image Path</label>
+    <input id="image" type="text" class="form-control">
+    <!-- formControlName="image" -->
+  </div>
+
+  <div class="d-flex justify-content-end gap-2">
+    <a routerLink="/jewelry" class="btn btn-outline-dark btn-sm">
+      Cancel
+    </a>
+
+    <button type="submit" class="btn btn-dark btn-sm">
+      Add Jewelry
+    </button>
+  </div>
+
+</form>

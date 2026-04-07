@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+.card {
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 1rem auto;
+}
+.card-header {
+  height: 4rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.5rem; 
+}
+.card-body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  background: rgba(141, 141, 141, 0.1);
+  padding-top: 1.5rem;
+}
+.card-footer {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.8rem;
+  height: 2.5rem;
+}
+body {
+  background: #fff;
+}
+form {
+  padding: 1rem;
+  width: 60%;
+  margin: 1rem auto;
+}
