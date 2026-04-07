@@ -1,74 +1,59 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { JewelryItem } from '../models/jewelry.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class JewelryService {
 
-  private storageKey = 'jewelryItems';
+  private apiUrl = 'http://localhost:3000/jewelry';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   // =========================
   // GET ALL ITEMS
   // =========================
-  getAll(): JewelryItem[] {
-    return this.load();
+  getAll(): Observable<JewelryItem[]> {
+    return this.http.get<JewelryItem[]>(this.apiUrl);
   }
 
   // =========================
   //  GET ONE ITEM BY ID
   // =========================
-  getById(id: number): JewelryItem | undefined {
-    return this.load().find(item => item.id === id);
+  getById(id: number): Observable<JewelryItem> {
+    return this.http.get<JewelryItem>(`${this.apiUrl}/${id}`);
   }
 
   // =========================
   //  ADD NEW ITEM
   // =========================
-  add(item: JewelryItem): void {
-    const items = this.load();
-
-    this.validate(item);
-
-    // generate ID
-    item.id = Date.now();
-
-    items.push(item);
-    this.save(items);
+  add(item: JewelryItem): Observable<JewelryItem> {
+    return this.http.post<JewelryItem>(this.apiUrl, item);
   }
 
   // =========================
   //  UPDATE ITEM
   // =========================
-  update(updatedItem: JewelryItem): void {
-    if (!updatedItem.id) {
-      throw new Error('Item must have an ID to update');
-    }
-
-    const items = this.load();
-
-    const index = items.findIndex(item => item.id === updatedItem.id);
-
-    if (index === -1) {
-      throw new Error('Item not found');
-    }
-
-    this.validate(updatedItem);
-
-    items[index] = updatedItem;
-
-    this.save(items);
+  update(updatedItem: JewelryItem): Observable<JewelryItem> {
+    return this.http.put<JewelryItem>(`${this.apiUrl}/${updatedItem.id}`, updatedItem);
   }
 
   // =========================
   //  DELETE ITEM
   // =========================
-  delete(id: number): void {
-    const items = this.load().filter(item => item.id !== id);
-    this.save(items);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+
+}
+
+  /**~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+        NEED TO BE UPDATED TO DB
+  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+
 
   // =========================
   //  SEARCH (Optional but useful)
@@ -107,15 +92,6 @@ export class JewelryService {
   // PRIVATE METHODS
   // =========================
 
-  private load(): JewelryItem[] {
-    const data = localStorage.getItem(this.storageKey);
-    return data ? JSON.parse(data) : [];
-  }
-
-  private save(items: JewelryItem[]): void {
-    localStorage.setItem(this.storageKey, JSON.stringify(items));
-  }
-
   private validate(item: JewelryItem): void {
     if (!item.name || item.name.trim() === '') {
       throw new Error('Name is required');
@@ -134,3 +110,4 @@ export class JewelryService {
     }
   }
 }
+*/ 
