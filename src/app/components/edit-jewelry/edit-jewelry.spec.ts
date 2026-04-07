@@ -1,23 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { EditJewelryComponent } from './edit-jewelry';
 
-import { EditJewelry } from './edit-jewelry';
-
-describe('EditJewelry', () => {
-  let component: EditJewelry;
-  let fixture: ComponentFixture<EditJewelry>;
+describe('EditJewelryComponent', () => {
+  let component: EditJewelryComponent;
+  let fixture: ComponentFixture<EditJewelryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EditJewelry]
-    })
-    .compileComponents();
+      imports: [EditJewelryComponent],
+      providers: [provideHttpClient(), provideRouter([])]
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(EditJewelry);
+    fixture = TestBed.createComponent(EditJewelryComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should start in loading state', () => {
+    expect(component.isLoading).toBe(true);
   });
 });

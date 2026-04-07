@@ -1,4 +1,8 @@
-.navbar {
-  background: red;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+.navbar-brand {
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.nav-link.active {
+  font-weight: 600;
+  color: #ffc107 !important;
 }

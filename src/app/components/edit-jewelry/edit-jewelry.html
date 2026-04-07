@@ -1,27 +1,111 @@
-<h2>Edit Jewelry</h2>
+<div class="card p-4 mx-auto mt-3" style="max-width: 600px;">
+  <h3 class="fw-bold mb-4">Edit Jewelry</h3>
 
-<input [(ngModel)]="item.name" placeholder="Name"><br><br>
+  <!-- Loading -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-secondary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
-<select [(ngModel)]="item.category">
-  <option value="Ring">Ring</option>
-  <option value="Necklace">Necklace</option>
-  <option value="Bracelet">Bracelet</option>
-  <option value="Earrings">Earrings</option>
-  <option value="Anklet">Anklet</option>
-</select>
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+    <a routerLink="/jewelry" class="btn btn-sm btn-outline-danger ms-2">Back to List</a>
+  </div>
 
-<br><br>
+  <!-- Edit Form -->
+  <form *ngIf="!isLoading && !errorMessage" #editForm="ngForm" (ngSubmit)="updateJewelry(editForm)" novalidate>
 
-<input type="number" [(ngModel)]="item.price" placeholder="Price"><br><br>
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+      <input
+        id="name" type="text" class="form-control"
+        [(ngModel)]="item.name" name="name"
+        required minlength="2"
+        #nameCtrl="ngModel"
+        [class.is-invalid]="nameCtrl.invalid && nameCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="nameCtrl.errors?.['required']">Name is required.</div>
+      <div class="invalid-feedback" *ngIf="nameCtrl.errors?.['minlength']">Name must be at least 2 characters.</div>
+    </div>
 
-<input type="number" [(ngModel)]="item.quantity" placeholder="Quantity"><br><br>
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+      <select
+        id="category" class="form-select"
+        [(ngModel)]="item.category" name="category"
+        required
+        #catCtrl="ngModel"
+        [class.is-invalid]="catCtrl.invalid && catCtrl.touched"
+      >
+        <option value="" disabled>Select Category</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+      <div class="invalid-feedback">Please select a category.</div>
+    </div>
 
-<input [(ngModel)]="item.image" placeholder="Image Path"><br><br>
+    <!-- Price -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Price ($) <span class="text-danger">*</span></label>
+      <input
+        id="price" type="number" class="form-control"
+        [(ngModel)]="item.price" name="price"
+        required min="0.01" step="0.01"
+        #priceCtrl="ngModel"
+        [class.is-invalid]="priceCtrl.invalid && priceCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="priceCtrl.errors?.['required']">Price is required.</div>
+      <div class="invalid-feedback" *ngIf="priceCtrl.errors?.['min']">Price must be greater than $0.</div>
+    </div>
 
-<input [(ngModel)]="item.description" placeholder="Description"><br><br>
+    <!-- Quantity -->
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity <span class="text-danger">*</span></label>
+      <input
+        id="quantity" type="number" class="form-control"
+        [(ngModel)]="item.quantity" name="quantity"
+        required min="0"
+        #qtyCtrl="ngModel"
+        [class.is-invalid]="qtyCtrl.invalid && qtyCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="qtyCtrl.errors?.['required']">Quantity is required.</div>
+      <div class="invalid-feedback" *ngIf="qtyCtrl.errors?.['min']">Quantity cannot be negative.</div>
+    </div>
 
-<button (click)="updateJewelry()">Update</button>
+    <!-- Image Path -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Image Path</label>
+      <input
+        id="image" type="text" class="form-control"
+        [(ngModel)]="item.image" name="image"
+        placeholder="e.g. images/my-ring.jpg"
+      />
+    </div>
 
-<br><br>
+    <!-- Description -->
+    <div class="mb-4">
+      <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+      <textarea
+        id="description" class="form-control" rows="3"
+        [(ngModel)]="item.description" name="description"
+        required minlength="10"
+        #descCtrl="ngModel"
+        [class.is-invalid]="descCtrl.invalid && descCtrl.touched"
+      ></textarea>
+      <div class="invalid-feedback" *ngIf="descCtrl.errors?.['required']">Description is required.</div>
+      <div class="invalid-feedback" *ngIf="descCtrl.errors?.['minlength']">Description must be at least 10 characters.</div>
+    </div>
 
-<button routerLink="/">⬅ Back</button>
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <a routerLink="/jewelry" class="btn btn-outline-secondary">Cancel</a>
+      <button type="submit" class="btn btn-dark" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Updating...' : 'Update Jewelry' }}
+      </button>
+    </div>
+
+  </form>
+</div>

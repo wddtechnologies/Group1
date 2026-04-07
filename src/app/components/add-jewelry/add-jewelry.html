@@ -1,89 +1,101 @@
-<<<<<<< HEAD
+<div class="card p-4 mx-auto mt-3" style="max-width: 600px;">
+  <h3 class="fw-bold mb-4">Add New Jewelry</h3>
 
-<div class="form-header">
-  <h3 class="fw-bold px-5 fs-2">Edit Item</h3>
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+  <form #addForm="ngForm" (ngSubmit)="addJewelry(addForm)" novalidate>
+
+    <!-- Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
+      <input
+        id="name" type="text" class="form-control"
+        [(ngModel)]="item.name" name="name"
+        required minlength="2"
+        #nameCtrl="ngModel"
+        [class.is-invalid]="nameCtrl.invalid && nameCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="nameCtrl.errors?.['required']">Name is required.</div>
+      <div class="invalid-feedback" *ngIf="nameCtrl.errors?.['minlength']">Name must be at least 2 characters.</div>
+    </div>
+
+    <!-- Category -->
+    <div class="mb-3">
+      <label for="category" class="form-label">Category <span class="text-danger">*</span></label>
+      <select
+        id="category" class="form-select"
+        [(ngModel)]="item.category" name="category"
+        required
+        #catCtrl="ngModel"
+        [class.is-invalid]="catCtrl.invalid && catCtrl.touched"
+      >
+        <option value="" disabled>Select Category</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+      <div class="invalid-feedback">Please select a category.</div>
+    </div>
+
+    <!-- Price -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Price ($) <span class="text-danger">*</span></label>
+      <input
+        id="price" type="number" class="form-control"
+        [(ngModel)]="item.price" name="price"
+        required min="0.01" step="0.01"
+        #priceCtrl="ngModel"
+        [class.is-invalid]="priceCtrl.invalid && priceCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="priceCtrl.errors?.['required']">Price is required.</div>
+      <div class="invalid-feedback" *ngIf="priceCtrl.errors?.['min']">Price must be greater than $0.</div>
+    </div>
+
+    <!-- Quantity -->
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Quantity <span class="text-danger">*</span></label>
+      <input
+        id="quantity" type="number" class="form-control"
+        [(ngModel)]="item.quantity" name="quantity"
+        required min="0"
+        #qtyCtrl="ngModel"
+        [class.is-invalid]="qtyCtrl.invalid && qtyCtrl.touched"
+      />
+      <div class="invalid-feedback" *ngIf="qtyCtrl.errors?.['required']">Quantity is required.</div>
+      <div class="invalid-feedback" *ngIf="qtyCtrl.errors?.['min']">Quantity cannot be negative.</div>
+    </div>
+
+    <!-- Image Path -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Image Path</label>
+      <input
+        id="image" type="text" class="form-control"
+        [(ngModel)]="item.image" name="image"
+        placeholder="e.g. images/my-ring.jpg"
+      />
+      <small class="form-text text-muted">Place images in the public/images folder.</small>
+    </div>
+
+    <!-- Description -->
+    <div class="mb-4">
+      <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+      <textarea
+        id="description" class="form-control" rows="3"
+        [(ngModel)]="item.description" name="description"
+        required minlength="10"
+        #descCtrl="ngModel"
+        [class.is-invalid]="descCtrl.invalid && descCtrl.touched"
+      ></textarea>
+      <div class="invalid-feedback" *ngIf="descCtrl.errors?.['required']">Description is required.</div>
+      <div class="invalid-feedback" *ngIf="descCtrl.errors?.['minlength']">Description must be at least 10 characters.</div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="d-flex justify-content-between">
+      <a routerLink="/jewelry" class="btn btn-outline-secondary">Cancel</a>
+      <button type="submit" class="btn btn-dark" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Adding...' : 'Add Jewelry' }}
+      </button>
+    </div>
+
+  </form>
 </div>
-
-
-<form>
-  <!-- [formGroup]="jewelryForm" (ngSubmit)="submit()" -->
-
-  <div class="mb-3">
-    <label for="name" class="form-label">Name</label>
-    <input id="name" type="text" class="form-control">
-    <!-- formControlName="name" -->
-  </div>
-
-  <div class="mb-3">
-    <label for="category" class="form-label">Category</label>
-    <input id="category" type="text" class="form-control">
-    <!-- formControlName="category" -->
-  </div>
-
-  <div class="mb-3">
-    <label for="quantity" class="form-label">Quantity</label>
-    <input id="quantity" type="number" class="form-control">
-    <!-- formControlName="quantity" -->
-  </div>
-
-  <div class="mb-3">
-    <label for="price" class="form-label">Price</label>
-    <input id="price" type="number" class="form-control">
-    <!-- formControlName="price" -->
-  </div>
-
-  <div class="mb-3">
-    <label for="description" class="form-label">Description</label>
-    <textarea id="description" class="form-control" rows="4">
-    </textarea>
-    <!-- formControlName="description" -->    
-  </div>
-
-  <div class="mb-4">
-    <label for="image" class="form-label">Image Path</label>
-    <input id="image" type="text" class="form-control">
-    <!-- formControlName="image" -->
-  </div>
-
-  <div class="d-flex justify-content-end gap-2">
-    <a routerLink="/jewelry" class="btn btn-outline-dark btn-sm">
-      Cancel
-    </a>
-
-    <button type="submit" class="btn btn-dark btn-sm">
-      Save Changes
-    </button>
-  </div>
-
-</form>
-=======
-<h2>Add Jewelry</h2>
-
-<input placeholder="Name" [(ngModel)]="item.name"><br><br>
-
-<!-- FIXED: Category dropdown -->
-<select [(ngModel)]="item.category">
-  <option value="">Select Category</option>
-  <option value="Ring">Ring</option>
-  <option value="Necklace">Necklace</option>
-  <option value="Bracelet">Bracelet</option>
-  <option value="Earrings">Earrings</option>
-  <option value="Anklet">Anklet</option>
-</select>
-
-<br><br>
-
-<input type="number" placeholder="Price" [(ngModel)]="item.price"><br><br>
-
-<input type="number" placeholder="Quantity" [(ngModel)]="item.quantity"><br><br>
-
-<input placeholder="Image Path (e.g. public/images/item.jpg)" [(ngModel)]="item.image"><br><br>
-
-<input placeholder="Description" [(ngModel)]="item.description"><br><br>
-
-<button (click)="addJewelry()">Add Jewelry</button>
-
-<br><br>
-
-<button routerLink="/">⬅ Back</button>
->>>>>>> b23c594 (Updated CRUD features with edit, add, delete and images)

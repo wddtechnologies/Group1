@@ -1,59 +1,68 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
+import { Router, RouterLink } from '@angular/router';
 import { JewelryService } from '../../services/jewelry.service';
-import { Router } from '@angular/router';
 import { JewelryItem } from '../../models/jewelry.model';
 
 /**
  * Component responsible for adding a new jewelry item to the inventory.
- * Uses Angular standalone component approach with FormsModule for two-way binding.
+ * Uses template-driven forms with validation.
  */
 @Component({
   selector: 'app-add-jewelry',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './add-jewelry.html'
+  imports: [CommonModule, FormsModule, RouterLink],
+  templateUrl: './add-jewelry.html',
+  styleUrl: './add-jewelry.css'
 })
 export class AddJewelryComponent {
 
-  /**
-   * Object representing the new jewelry item form data.
-   * It follows the JewelryItem interface structure.
-   * Default category is set to 'Ring' to satisfy strict typing.
-   */
+  /** Form model for the new jewelry item */
   item: JewelryItem = {
     name: '',
-    category: 'Ring', // Default valid category (avoids TypeScript errors)
+    category: 'Ring',
     price: 0,
     quantity: 0,
     image: '',
     description: ''
   };
 
-  /**
-   * Constructor injects:
-   * - JewelryService → to handle API calls (add item)
-   * - Router → to navigate after successful submission
-   */
+  /** Submission state flags */
+  isSubmitting: boolean = false;
+  errorMessage: string = '';
+
+  /** Available categories */
+  categories: string[] = ['Ring', 'Necklace', 'Bracelet', 'Earrings', 'Anklets'];
+
   constructor(
     private service: JewelryService,
     private router: Router
   ) {}
 
   /**
-   * Method triggered when user clicks "Add Jewelry" button.
-   * Sends POST request to API using the service.
-   * On success:
-   * - Shows confirmation alert
-   * - Redirects user back to inventory list page
+   * Handles form submission.
+   * Validates the form, sends POST request, and navigates back on success.
    */
-  addJewelry() {
-    this.service.add(this.item).subscribe(() => {
-      alert('Jewelry Added Successfully!');
+  addJewelry(form: NgForm): void {
+    if (form.invalid) {
+      // Mark all fields as touched so validation errors show
+      Object.values(form.controls).forEach(control => control.markAsTouched());
+      return;
+    }
 
-      // Navigate back to main inventory list
-      this.router.navigate(['/']);
+    this.isSubmitting = true;
+    this.errorMessage = '';
+
+    this.service.add(this.item).subscribe({
+      next: () => {
+        this.router.navigate(['/jewelry']);
+      },
+      error: (err) => {
+        console.error('Failed to add item:', err);
+        this.errorMessage = 'Failed to add item. Please try again.';
+        this.isSubmitting = false;
+      }
     });
   }
 }

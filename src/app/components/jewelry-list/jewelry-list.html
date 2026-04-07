@@ -1,31 +1,116 @@
-<h2>Jewelry Inventory</h2>
+<!-- Dashboard Summary -->
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card text-center p-3">
+      <h5 class="text-muted mb-1">Total Items</h5>
+      <h3 class="fw-bold">{{ items.length }}</h3>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center p-3">
+      <h5 class="text-muted mb-1">Total Value</h5>
+      <h3 class="fw-bold text-success">{{ totalValue | currency }}</h3>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center p-3">
+      <h5 class="text-muted mb-1">Low Stock Alerts</h5>
+      <h3 class="fw-bold text-danger">{{ lowStockCount }}</h3>
+    </div>
+  </div>
+</div>
 
-<button (click)="sortByQuantity()">Sort by Quantity</button>
-
-<button routerLink="/add">+ Add Jewelry</button>
-
-
-
-<div class="grid">
-
-  <div class="card" *ngFor="let item of items">
-
-    <img [src]="item.image" class="image" />
-
-    <h3>{{ item.name }}</h3>
-
-    <p>{{ item.category }}</p>
-
-    <p>Price: ${{ item.price }}</p>
-
-    <p>Quantity: {{ item.quantity }}</p>
-
-    <p>Status: {{ item.quantity | stockAlert }}</p>
-
-    <button [routerLink]="['/edit', item.id]">Edit</button>
-
-    <button (click)="deleteItem(item.id!)">Delete</button>
-
+<!-- Search, Filter & Sort Controls -->
+<div class="row mb-3 g-2 align-items-center">
+  <div class="col-md-4">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by name or description..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="applyFilters()"
+    />
   </div>
 
+  <div class="col-md-3">
+    <select class="form-select" [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
+      <option value="">All Categories</option>
+      <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+    </select>
+  </div>
+
+  <div class="col-md-5 d-flex gap-2 justify-content-md-end">
+    <button class="btn btn-outline-secondary btn-sm" (click)="sortByQuantity()">
+      Sort by Quantity
+    </button>
+    <button class="btn btn-outline-secondary btn-sm" (click)="sortByPrice()">
+      Sort by Price
+    </button>
+    <a routerLink="/jewelry/add" class="btn btn-dark btn-sm">
+      + Add Jewelry
+    </a>
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="isLoading" class="text-center py-5">
+  <div class="spinner-border text-secondary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="text-muted mt-2">Loading inventory...</p>
+</div>
+
+<!-- Error Message -->
+<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+  {{ errorMessage }}
+  <button class="btn btn-sm btn-outline-danger ms-2" (click)="loadItems()">Retry</button>
+</div>
+
+<!-- Empty State -->
+<div *ngIf="!isLoading && !errorMessage && filteredItems.length === 0" class="text-center py-5">
+  <h5 class="text-muted">No jewelry items found.</h5>
+  <p class="text-muted">Try adjusting your search or <a routerLink="/jewelry/add">add a new item</a>.</p>
+</div>
+
+<!-- Jewelry Cards Grid -->
+<div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3" *ngIf="!isLoading && filteredItems.length > 0">
+  <div class="col" *ngFor="let item of filteredItems">
+    <div class="card h-100">
+
+      <img
+        [src]="item.image"
+        [alt]="item.name"
+        class="card-img-top"
+        style="height: 200px; object-fit: cover;"
+        (error)="$any($event.target).src = 'images/default.png'"
+      />
+
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text text-muted small">{{ item.category }}</p>
+        <p class="card-text small">{{ item.description }}</p>
+
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <span class="fw-bold text-success">{{ item.price | currency }}</span>
+          <span>Qty: {{ item.quantity }}</span>
+        </div>
+
+        <div class="mt-2">
+          <span [ngClass]="item.quantity | stockBadgeClass">
+            {{ item.quantity | stockAlert }}
+          </span>
+        </div>
+      </div>
+
+      <div class="card-footer d-flex justify-content-between">
+        <a [routerLink]="['/jewelry/edit', item.id]" class="btn btn-outline-primary btn-sm">
+          Edit
+        </a>
+        <button class="btn btn-outline-danger btn-sm" (click)="deleteItem(item.id!)">
+          Delete
+        </button>
+      </div>
+
+    </div>
+  </div>
 </div>

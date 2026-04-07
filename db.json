@@ -1,7 +1,6 @@
 {
   "jewelry": [
     {
-<<<<<<< HEAD
       "id": 1,
       "name": "Chester Necklace",
       "category": "Necklace",
@@ -9,36 +8,60 @@
       "quantity": 6,
       "description": "Layered chains in the weaves JPL, Byzantine and Candy Cane Cord. Featuring a stainless steel heart lock with working key.",
       "image": "images/ChesterNecklace.jpg"
-    }
-  ]
-=======
-      "id": "1",
-      "name": "Chester Necklace",
-      "category": "Necklace",
-      "price": 250,
-      "quantity": 10,
-      "description": "Layered chains in the weaves JPL, Byzantine and Candy Cane Cord. Featuring a stainless steel heart lock with working key.",
-      "image": "images/ChesterNecklace.jpg"
     },
     {
-      "id": "2",
-      "name": "Ring",
+      "id": 2,
+      "name": "Heritage Ring",
       "category": "Ring",
       "price": 50,
       "quantity": 25,
-      "description": "Traditional Heritage  Hand Made collection ring",
+      "description": "Traditional Heritage Hand Made collection ring with intricate detailing.",
       "image": "images/ring2.png"
     },
     {
-      "id": "3",
-      "name": "ring",
+      "id": 3,
+      "name": "Classic Band Ring",
       "category": "Ring",
       "price": 40,
-      "quantity": 8,
-      "description": "traditional rings",
+      "quantity": 2,
+      "description": "Traditional style band ring with a timeless design.",
       "image": "images/ring2.png"
+    },
+    {
+      "id": 4,
+      "name": "Frosty Elfsheet Bracelet",
+      "category": "Bracelet",
+      "price": 180,
+      "quantity": 4,
+      "description": "Delicate elfsheet weave bracelet with a frosty silver finish.",
+      "image": "images/FrostyWlfsheetBracelet.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Trinity Earrings",
+      "category": "Earrings",
+      "price": 95,
+      "quantity": 12,
+      "description": "Elegant trinity-design drop earrings in polished stainless steel.",
+      "image": "images/TrinityEarrings.png"
+    },
+    {
+      "id": 6,
+      "name": "Labradorite Necklace",
+      "category": "Necklace",
+      "price": 320,
+      "quantity": 1,
+      "description": "Statement necklace featuring a natural labradorite pendant with iridescent flash.",
+      "image": "images/LabradoriteNecklace.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Beaded Anklet",
+      "category": "Anklets",
+      "price": 35,
+      "quantity": 18,
+      "description": "Handcrafted beaded anklet with adjustable clasp.",
+      "image": "images/Anklet1.jpg"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
->>>>>>> b23c594 (Updated CRUD features with edit, add, delete and images)
+  ]
 }
