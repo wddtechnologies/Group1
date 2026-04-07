@@ -1,0 +1,13 @@
+{
+  "jewelry": [
+    {
+      "id": 1,
+      "name": "Chester Necklace",
+      "category": "Necklace",
+      "price": 250,
+      "quantity": 6,
+      "description": "Layered chains in the weaves JPL, Byzantine and Candy Cane Cord. Featuring a stainless steel heart lock with working key.",
+      "image": "images/ChesterNecklace.jpg"
+    }
+  ]
+}
