@@ -1,1 +1,27 @@
-<p>edit-jewelry works!</p>
+<h2>Edit Jewelry</h2>
+
+<input [(ngModel)]="item.name" placeholder="Name"><br><br>
+
+<select [(ngModel)]="item.category">
+  <option value="Ring">Ring</option>
+  <option value="Necklace">Necklace</option>
+  <option value="Bracelet">Bracelet</option>
+  <option value="Earrings">Earrings</option>
+  <option value="Anklet">Anklet</option>
+</select>
+
+<br><br>
+
+<input type="number" [(ngModel)]="item.price" placeholder="Price"><br><br>
+
+<input type="number" [(ngModel)]="item.quantity" placeholder="Quantity"><br><br>
+
+<input [(ngModel)]="item.image" placeholder="Image Path"><br><br>
+
+<input [(ngModel)]="item.description" placeholder="Description"><br><br>
+
+<button (click)="updateJewelry()">Update</button>
+
+<br><br>
+
+<button routerLink="/">⬅ Back</button>

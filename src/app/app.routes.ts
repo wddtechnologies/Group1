@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+<<<<<<< HEAD
 // import { JewelryListComponent } from './components/jewelry-list/jewelry-list';
 import { EditJewelry } from './components/edit-jewelry/edit-jewelry';
 import { AddJewelry } from './components/add-jewelry/add-jewelry';
@@ -14,3 +15,15 @@ export const routes: Routes = [
 { path: '**', redirectTo: 'jewelry'}
 
 ];
+=======
+import { JewelryListComponent } from './components/jewelry-list/jewelry-list';
+import { AddJewelryComponent } from './components/add-jewelry/add-jewelry';
+import { EditJewelryComponent } from './components/edit-jewelry/edit-jewelry';
+
+export const routes: Routes = [
+  { path: '', component: JewelryListComponent },
+  { path: 'add', component: AddJewelryComponent },
+  { path: 'edit/:id', component: EditJewelryComponent }
+
+];
+>>>>>>> b23c594 (Updated CRUD features with edit, add, delete and images)

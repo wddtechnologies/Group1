@@ -1,6 +1,7 @@
 {
   "jewelry": [
     {
+<<<<<<< HEAD
       "id": 1,
       "name": "Chester Necklace",
       "category": "Necklace",
@@ -10,4 +11,34 @@
       "image": "images/ChesterNecklace.jpg"
     }
   ]
+=======
+      "id": "1",
+      "name": "Chester Necklace",
+      "category": "Necklace",
+      "price": 250,
+      "quantity": 10,
+      "description": "Layered chains in the weaves JPL, Byzantine and Candy Cane Cord. Featuring a stainless steel heart lock with working key.",
+      "image": "images/ChesterNecklace.jpg"
+    },
+    {
+      "id": "2",
+      "name": "Ring",
+      "category": "Ring",
+      "price": 50,
+      "quantity": 25,
+      "description": "Traditional Heritage  Hand Made collection ring",
+      "image": "images/ring2.png"
+    },
+    {
+      "id": "3",
+      "name": "ring",
+      "category": "Ring",
+      "price": 40,
+      "quantity": 8,
+      "description": "traditional rings",
+      "image": "images/ring2.png"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+>>>>>>> b23c594 (Updated CRUD features with edit, add, delete and images)
 }

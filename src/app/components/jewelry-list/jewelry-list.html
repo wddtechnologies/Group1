@@ -1,1 +1,31 @@
-<p>jewelry-list works!</p>
+<h2>Jewelry Inventory</h2>
+
+<button (click)="sortByQuantity()">Sort by Quantity</button>
+
+<button routerLink="/add">+ Add Jewelry</button>
+
+
+
+<div class="grid">
+
+  <div class="card" *ngFor="let item of items">
+
+    <img [src]="item.image" class="image" />
+
+    <h3>{{ item.name }}</h3>
+
+    <p>{{ item.category }}</p>
+
+    <p>Price: ${{ item.price }}</p>
+
+    <p>Quantity: {{ item.quantity }}</p>
+
+    <p>Status: {{ item.quantity | stockAlert }}</p>
+
+    <button [routerLink]="['/edit', item.id]">Edit</button>
+
+    <button (click)="deleteItem(item.id!)">Delete</button>
+
+  </div>
+
+</div>

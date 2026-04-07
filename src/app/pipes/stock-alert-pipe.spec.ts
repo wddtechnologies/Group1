@@ -1,8 +1,14 @@
-import { StockAlertPipe } from './stock-alert-pipe';
+import { Pipe, PipeTransform } from '@angular/core';
 
-describe('StockAlertPipe', () => {
-  it('create an instance', () => {
-    const pipe = new StockAlertPipe();
-    expect(pipe).toBeTruthy();
-  });
-});
+@Pipe({
+  name: 'stockAlert',
+  standalone: true
+})
+export class StockAlertPipe implements PipeTransform {
+
+  transform(quantity: number): string {
+    if (quantity <= 2) return 'Low Stock';
+    if (quantity <= 5) return 'Medium Stock';
+    return 'In Stock';
+  }
+}

@@ -10,7 +10,11 @@ export interface JewelryItem {
   name: string;
 
   /** The type of jewelry  */
+<<<<<<< HEAD
   category: 'Ring' | 'Necklace' | 'Bracelet' | 'Earrings';
+=======
+  category: 'Ring' | 'Necklace' | 'Bracelet' | 'Earrings' | 'Anklets';
+>>>>>>> b23c594 (Updated CRUD features with edit, add, delete and images)
 
   /** The retail price of the item */
   price: number;
