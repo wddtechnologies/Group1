@@ -2,19 +2,22 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
 body {
-  background: #f8f9fa;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #e2e6e9;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   margin: 0;
+}
+.nav-link:hover { 
+  color: rgb(52, 52, 255, 1) !important; 
 }
 
 /* Reusable card shadows */
 .card {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e9ecef;
+  border: 1px solid #333;
   transition: box-shadow 0.2s ease;
 }
 .card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Form global styles */

@@ -16,7 +16,7 @@
       "price": 50,
       "quantity": 25,
       "description": "Traditional Heritage Hand Made collection ring with intricate detailing.",
-      "image": "images/ring2.png"
+      "image": "images/HeritageRing.png"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "price": 40,
       "quantity": 2,
       "description": "Traditional style band ring with a timeless design.",
-      "image": "images/ring2.png"
+      "image": "images/ClassicRing.png"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "price": 180,
       "quantity": 4,
       "description": "Delicate elfsheet weave bracelet with a frosty silver finish.",
-      "image": "images/FrostyWlfsheetBracelet.jpg"
+      "image": "images/FrostyElfsheetBracelet.jpg"
     },
     {
       "id": 5,

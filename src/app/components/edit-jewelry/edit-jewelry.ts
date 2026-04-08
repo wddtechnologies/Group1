@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -39,7 +39,8 @@ export class EditJewelryComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private service: JewelryService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   /**
@@ -58,11 +59,13 @@ export class EditJewelryComponent implements OnInit {
       next: (data) => {
         this.item = data;
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Failed to load item:', err);
         this.errorMessage = 'Failed to load item details. The item may not exist.';
         this.isLoading = false;
+        this.cdr.detectChanges();
       }
     });
   }

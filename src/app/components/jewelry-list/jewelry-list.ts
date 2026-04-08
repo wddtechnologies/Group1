@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -40,7 +40,10 @@ export class JewelryListComponent implements OnInit {
   /** Available categories for the filter dropdown */
   categories: string[] = ['Ring', 'Necklace', 'Bracelet', 'Earrings', 'Anklets'];
 
-  constructor(private service: JewelryService) {}
+  constructor(
+    private service: JewelryService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.loadItems();
@@ -59,11 +62,13 @@ export class JewelryListComponent implements OnInit {
         this.items = data;
         this.applyFilters();
         this.isLoading = false;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Failed to load items:', err);
         this.errorMessage = 'Failed to load inventory. Make sure json-server is running (npm run db).';
         this.isLoading = false;
+        this.cdr.detectChanges();
       }
     });
   }

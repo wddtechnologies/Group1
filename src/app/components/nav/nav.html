@@ -1,30 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+
+<nav class="navbar navbar-expand-lg bg-dark px-3">
   <div class="container-fluid">
 
-    <a class="navbar-brand" routerLink="/jewelry">
-      💎 Jewelry Inventory
-    </a>
+    <span class="navbar-brand text-white" routerLink="/">
+     💍 Jewelry Inventory
+    </span>
 
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <div class="ms-auto">
+      <a class="nav-link text-white d-inline me-3"
+         routerLink="/jewelry"
+         routerLinkActive="fw-bold text-warning">
+        Inventory
+      </a>
 
-    <div class="collapse navbar-collapse" id="navMenu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/jewelry"
-             routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-            Inventory
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/jewelry/add"
-             routerLinkActive="active">
-            + Add Item
-          </a>
-        </li>
-      </ul>
+      <a class="nav-link text-white d-inline"
+         routerLink="/jewelry/add"
+         routerLinkActive="fw-bold text-warning">
+        Add Item
+      </a>
     </div>
 
   </div>
