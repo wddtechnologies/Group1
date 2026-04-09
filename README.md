@@ -86,7 +86,26 @@ src/app/
 - Alexandria
 - Komal
 - Rahul
-- Wubit 
+- Wubit
+
+---
+
+## Screenshots 
+
+<img width="1543" height="965" alt="InventoryPage" src="https://github.com/user-attachments/assets/678e74fe-8d2a-422c-af49-a08bcd8d3cc0" />
+
+<img width="1177" height="774" alt="LowStockPopUp" src="https://github.com/user-attachments/assets/e37b8f34-1e68-4677-bb97-38533ea33ffd" />
+
+<img width="1788" height="980" alt="AddItem" src="https://github.com/user-attachments/assets/9e549938-539f-45a5-b956-549bfa14188b" />
+
+<img width="1787" height="951" alt="EditItem" src="https://github.com/user-attachments/assets/4f6aac3b-4876-4610-a758-a669fd239ad8" />
+
+<img width="1040" height="558" alt="Test1" src="https://github.com/user-attachments/assets/bbfd6ab0-df84-427e-b480-8a0b90d7abcc" />
+
+<img width="1196" height="598" alt="Test2" src="https://github.com/user-attachments/assets/0d621f8d-2759-476a-ad05-a44f30b3f938" />
+
+<img width="1248" height="764" alt="TestPass" src="https://github.com/user-attachments/assets/392d985e-10bf-427a-9ba4-7bd720b58377" />
+
 
 ## License
 
