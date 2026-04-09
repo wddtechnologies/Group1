@@ -1,5 +1,9 @@
-<div class="card p-4 mx-auto mt-3" style="max-width: 600px;">
-  <h3 class="fw-bold mb-4">Add New Jewelry</h3>
+
+<div class="form-card">
+
+  <div class="form-header">
+    <h3 class="fw-bold px-5 fs-2">Add Item</h3>
+  </div>
 
   <!-- Error Message -->
   <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
@@ -96,6 +100,5 @@
         {{ isSubmitting ? 'Adding...' : 'Add Jewelry' }}
       </button>
     </div>
-
   </form>
 </div>

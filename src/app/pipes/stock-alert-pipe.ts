@@ -36,3 +36,18 @@ export class StockBadgeClassPipe implements PipeTransform {
     return 'badge badge-in-stock';
   }
 }
+
+// StockCardClass pipe to apply styling to the inventory cards based on stock levels
+// usage: [ngClass]="item.quantity | stockCardClass" in jewelry-list.html 
+@Pipe({
+  name: 'stockCardClass',
+  standalone: true
+})
+export class StockCardClassPipe implements PipeTransform {
+
+  transform(quantity: number): string {
+    if (quantity <= 2) return 'card card-low';
+    if (quantity <= 5) return 'card card-medium';
+    return 'card card-in-stock';
+  }
+}

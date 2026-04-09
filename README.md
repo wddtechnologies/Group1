@@ -10,6 +10,7 @@ An Angular 21 CRUD application for managing a jewelry store inventory. Built wit
 - **Sort** — Sort by quantity or price
 - **Dashboard Summary** — Total items count, total inventory value, and low-stock alerts
 - **Stock Alert Pipe** — Custom pipe that displays color-coded stock status badges
+- **Low Stock Items Popup** - Click low stock quantity card to view which items are low in stock in 1 quick glance 
 - **Error Handling** — User-friendly error messages with retry buttons
 - **Loading States** — Spinner indicators during API calls
 - **Responsive Design** — Mobile-friendly layout using Bootstrap grid
@@ -82,8 +83,12 @@ src/app/
 
 ## Group Members
 
-- (Add your names here)
+- Alexandria
+- Komal
+- Rahul
+- Wubit 
 
 ## License
 
 MIT
+

@@ -1,7 +1,7 @@
 {
   "jewelry": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Chester Necklace",
       "category": "Necklace",
       "price": 250,
@@ -10,7 +10,7 @@
       "image": "images/ChesterNecklace.jpg"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Heritage Ring",
       "category": "Ring",
       "price": 50,
@@ -19,7 +19,7 @@
       "image": "images/HeritageRing.png"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Classic Band Ring",
       "category": "Ring",
       "price": 40,
@@ -28,7 +28,7 @@
       "image": "images/ClassicRing.png"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Frosty Elfsheet Bracelet",
       "category": "Bracelet",
       "price": 180,
@@ -37,7 +37,7 @@
       "image": "images/FrostyElfsheetBracelet.jpg"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Trinity Earrings",
       "category": "Earrings",
       "price": 95,
@@ -46,7 +46,7 @@
       "image": "images/TrinityEarrings.png"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Labradorite Necklace",
       "category": "Necklace",
       "price": 320,
@@ -55,7 +55,7 @@
       "image": "images/LabradoriteNecklace.jpg"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Beaded Anklet",
       "category": "Anklets",
       "price": 35,
@@ -63,5 +63,6 @@
       "description": "Handcrafted beaded anklet with adjustable clasp.",
       "image": "images/Anklet1.jpg"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

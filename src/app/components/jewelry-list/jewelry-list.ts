@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { JewelryService } from '../../services/jewelry.service';
 import { JewelryItem } from '../../models/jewelry.model';
-import { StockAlertPipe, StockBadgeClassPipe } from '../../pipes/stock-alert-pipe';
+import { StockAlertPipe, StockBadgeClassPipe, StockCardClassPipe } from '../../pipes/stock-alert-pipe';
 
 /**
  * Component responsible for displaying all jewelry items in the inventory.
@@ -13,7 +13,7 @@ import { StockAlertPipe, StockBadgeClassPipe } from '../../pipes/stock-alert-pip
 @Component({
   selector: 'app-jewelry-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule, StockAlertPipe, StockBadgeClassPipe],
+  imports: [CommonModule, FormsModule, RouterModule, StockAlertPipe, StockBadgeClassPipe, StockCardClassPipe],
   templateUrl: './jewelry-list.html',
   styleUrl: './jewelry-list.css'
 })
@@ -27,6 +27,24 @@ export class JewelryListComponent implements OnInit {
 
   /** Current search term for filtering */
   searchTerm: string = '';
+
+  /** Controls visibility of the low-stock popup */
+  showLowStockPopup: boolean = false;
+
+  /** Returns the list of low-stock items */
+  get lowStockItems(): JewelryItem[] {
+    return this.items.filter(item => item.quantity <= 2);
+  }
+
+  /** Opens the low-stock popup */
+  openLowStockPopup(): void {
+    this.showLowStockPopup = true;
+  }
+
+  /** Closes the low-stock popup */
+  closeLowStockPopup(): void {
+    this.showLowStockPopup = false;
+  }
 
   /** Current category filter */
   selectedCategory: string = '';
@@ -62,6 +80,7 @@ export class JewelryListComponent implements OnInit {
         this.items = data;
         this.applyFilters();
         this.isLoading = false;
+        // forces change detection so angular updates the UI immediately
         this.cdr.detectChanges();
       },
       error: (err) => {
@@ -85,6 +104,7 @@ export class JewelryListComponent implements OnInit {
         error: (err) => {
           console.error('Failed to delete item:', err);
           this.errorMessage = 'Failed to delete item. Please try again.';
+
         }
       });
     }
@@ -141,3 +161,4 @@ export class JewelryListComponent implements OnInit {
     return this.items.filter(item => item.quantity <= 2).length;
   }
 }
+

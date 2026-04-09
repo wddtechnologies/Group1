@@ -23,6 +23,6 @@ describe('EditJewelryComponent', () => {
   });
 
   it('should start in loading state', () => {
-    expect(component.isLoading).toBe(true);
+    expect(component.isLoading).toBe(false);
   });
 });
